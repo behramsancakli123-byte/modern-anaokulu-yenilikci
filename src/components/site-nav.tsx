@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import logo from "@/assets/bihter-logo.png.asset.json";
 
 const links = [
   { to: "/", label: "Ana Sayfa" },
@@ -33,9 +34,11 @@ export function SiteNav() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex h-20 items-center justify-between py-3">
           <Link to="/" className="group flex items-center gap-2.5 min-w-0">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl gradient-hero shadow-playful transition-transform duration-500 group-hover:rotate-[10deg] group-hover:scale-110">
-              <Sparkles className="h-5 w-5 text-white" strokeWidth={2.5} />
-            </span>
+            <img
+              src={logo.url}
+              alt="Bihter Anaokulları"
+              className="h-12 w-12 shrink-0 object-contain transition-transform duration-500 group-hover:rotate-[8deg] group-hover:scale-110"
+            />
             <div className="min-w-0 leading-tight">
               <div className="font-display text-lg font-bold truncate">Özel Bihter</div>
               <div className="text-[11px] text-muted-foreground -mt-0.5 truncate">
