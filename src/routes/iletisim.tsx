@@ -160,14 +160,58 @@ function ContactPage() {
           </div>
         </div>
 
-        {/* MAP */}
-        <div className="mt-6 overflow-hidden rounded-[2rem] border border-border shadow-playful">
-          <iframe
-            title="Konum haritası"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=28.9784%2C41.0082%2C29.0284%2C41.0382&layer=mapnik"
-            className="w-full h-[380px] border-0"
-            loading="lazy"
-          />
+        {/* BRANCHES */}
+        <div className="mt-16">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <div className="inline-block rounded-full bg-primary/10 text-primary px-4 py-1.5 text-xs font-bold uppercase tracking-wider">
+              3 Şubemiz
+            </div>
+            <h2 className="mt-4 font-display font-bold text-4xl sm:text-5xl">
+              Size en yakın <span className="gradient-text">şubemiz</span>
+            </h2>
+            <p className="mt-3 text-muted-foreground">
+              Bayrampaşa ve Eyüpsultan'da hizmetinizdeyiz.
+            </p>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-3">
+            {branches.map((b, i) => (
+              <div
+                key={b.name}
+                style={{ animationDelay: `${i * 100}ms` }}
+                className="animate-fade-up group rounded-[2rem] border border-border bg-card overflow-hidden hover:-translate-y-2 hover:shadow-playful transition-all"
+              >
+                <div className="aspect-[16/10] overflow-hidden">
+                  <iframe
+                    title={`${b.name} konumu`}
+                    src={`https://www.google.com/maps?q=${encodeURIComponent(b.mapQuery)}&output=embed`}
+                    className="w-full h-full border-0"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-block rounded-full bg-primary/10 text-primary px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider">
+                      {b.district}
+                    </span>
+                  </div>
+                  <h3 className="mt-3 font-display text-2xl font-bold">{b.name}</h3>
+                  <div className="mt-3 flex gap-2 text-sm text-muted-foreground">
+                    <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
+                    <span>{b.address}</span>
+                  </div>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.mapQuery)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:gap-2.5 transition-all"
+                  >
+                    Yol tarifi al →
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
