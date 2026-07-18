@@ -21,8 +21,28 @@ export const Route = createFileRoute("/iletisim")({
 const info = [
   { icon: Phone, label: "Telefon", value: "+90 (212) 000 00 00", href: "tel:+902120000000" },
   { icon: Mail, label: "E-posta", value: "merhaba@bihteranaokulu.com", href: "mailto:merhaba@bihteranaokulu.com" },
-  { icon: MapPin, label: "Adres", value: "Bahçelievler Mah. Papatya Sk. No:12, İstanbul" },
   { icon: Clock, label: "Saatler", value: "Pzt - Cum · 07:30 – 18:30" },
+];
+
+const branches = [
+  {
+    name: "Yıldırım Şubesi",
+    address: "Yıldırım Mahallesi, Şehir Parkı Caddesi, No:17 Bayrampaşa/İstanbul",
+    district: "Bayrampaşa",
+    mapQuery: "Yıldırım Mahallesi Şehir Parkı Caddesi 17 Bayrampaşa İstanbul",
+  },
+  {
+    name: "Kocatepe Şubesi",
+    address: "Kocatepe Mahallesi, 32. Sokak, No:16/A Bayrampaşa/İstanbul",
+    district: "Bayrampaşa",
+    mapQuery: "Kocatepe Mahallesi 32. Sokak 16 Bayrampaşa İstanbul",
+  },
+  {
+    name: "Eyüp Şubesi",
+    address: "Karadolap Mahallesi, Neşeli Sokak, No:9/A Eyüpsultan/İstanbul",
+    district: "Eyüpsultan",
+    mapQuery: "Karadolap Mahallesi Neşeli Sokak 9 Eyüpsultan İstanbul",
+  },
 ];
 
 function ContactPage() {
