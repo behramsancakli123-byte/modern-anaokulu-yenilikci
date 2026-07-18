@@ -31,7 +31,7 @@ export function SiteNav() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="flex h-18 items-center justify-between py-3">
+        <div className="flex h-20 items-center justify-between py-3">
           <Link to="/" className="group flex items-center gap-2.5 min-w-0">
             <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl gradient-hero shadow-playful transition-transform duration-500 group-hover:rotate-[10deg] group-hover:scale-110">
               <Sparkles className="h-5 w-5 text-white" strokeWidth={2.5} />
