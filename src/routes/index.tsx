@@ -259,6 +259,47 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* KURUM MÜDÜRLERİMİZ */}
+      <section className="mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-28">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="inline-block rounded-full bg-primary/10 text-primary px-4 py-1.5 text-xs font-bold uppercase tracking-wider">
+            Ekibimiz
+          </div>
+          <h2 className="mt-4 font-display font-bold text-4xl sm:text-5xl">
+            Kurum <span className="gradient-text">Müdürlerimiz</span>
+          </h2>
+          <p className="mt-3 text-muted-foreground">
+            Üç şubemizde çocuklarımıza ve velilerimize sıcak bir yuva sunan yöneticilerimiz.
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {directors.map((d, i) => (
+            <div
+              key={d.branch}
+              style={{ animationDelay: `${i * 100}ms` }}
+              className="animate-fade-up group rounded-[2rem] border border-border bg-card p-5 hover:-translate-y-2 hover:shadow-playful transition-all"
+            >
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.5rem] gradient-hero">
+                <div aria-hidden className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_30%_20%,white,transparent_55%)]" />
+                <div className="absolute inset-0 grid place-items-center">
+                  <div className="grid h-24 w-24 place-items-center rounded-full bg-white/25 backdrop-blur ring-4 ring-white/30 group-hover:scale-110 transition-transform">
+                    <UserRound className="h-12 w-12 text-white" strokeWidth={2.2} />
+                  </div>
+                </div>
+                <div className="absolute top-3 left-3 rounded-full bg-white/90 backdrop-blur px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
+                  {d.district}
+                </div>
+              </div>
+              <div className="mt-5 text-center">
+                <div className="font-display text-xl font-bold">{d.name}</div>
+                <div className="mt-1 text-sm text-muted-foreground">{d.branch} Müdürü</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
