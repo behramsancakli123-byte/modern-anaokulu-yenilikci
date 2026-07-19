@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Heart, Palette, BookOpen, Music, Users, Shield, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Heart, Palette, BookOpen, Music, Users, Shield, Sparkles, Star, UserRound } from "lucide-react";
 import heroImg from "@/assets/hero-kids.jpg";
 import artImg from "@/assets/activity-art.jpg";
 import readImg from "@/assets/activity-read.jpg";
 import playImg from "@/assets/activity-play.jpg";
 import mascot from "@/assets/mascot.png";
+import { branches } from "@/lib/branches";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -20,11 +21,17 @@ const features = [
 ];
 
 const stats = [
-  { value: "12+", label: "Yıllık deneyim" },
+  { value: "9+", label: "Yıllık deneyim" },
   { value: "480", label: "Mutlu mezun" },
   { value: "22", label: "Uzman eğitmen" },
   { value: "4.9★", label: "Veli memnuniyeti" },
 ];
+
+const directors = branches.map((b) => ({
+  branch: b.name,
+  district: b.district,
+  name: "—",
+}));
 
 function HomePage() {
   return (

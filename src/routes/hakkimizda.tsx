@@ -10,7 +10,7 @@ export const Route = createFileRoute("/hakkimizda")({
       {
         name: "description",
         content:
-          "Özel Bihter Anaokulları'nın hikâyesi, misyonu ve eğitim yaklaşımı. 3–6 yaş için modern erken çocukluk eğitimi.",
+          "Özel Bihter Anaokulları'nın hikâyesi, misyonu ve eğitim yaklaşımı. 2–6 yaş için modern erken çocukluk eğitimi.",
       },
       { property: "og:title", content: "Hakkımızda — Özel Bihter Anaokulları" },
       { property: "og:description", content: "Sevgi, keşif ve yaratıcılık temelli eğitim yaklaşımımız." },
@@ -51,7 +51,7 @@ function AboutPage() {
             Sevgiyle büyür, <span className="gradient-text">merakla öğreniriz</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: "160ms" }}>
-            12 yıldır çocukların ilk okul deneyimini bir masal gibi kurmaya çalışıyoruz.
+            9 yıldır çocukların ilk okul deneyimini bir masal gibi kurmaya çalışıyoruz.
             Öğrenmenin oyunla, oyunun sevgi ile en güzel olduğuna inanıyoruz.
           </p>
         </div>
@@ -79,9 +79,9 @@ function AboutPage() {
               Küçük bir sınıftan büyük bir <span className="gradient-text">aileye</span>
             </h2>
             <p className="mt-5 text-muted-foreground leading-relaxed">
-              2013 yılında yalnızca 8 çocukla yola çıktık. Bugün, bahçesinde neşe
-              kaynayan, atölyelerinde renkler dans eden, kütüphanesinde hayaller
-              filizlenen bir okul olduk.
+              Küçük bir hayalle yola çıktık. Bugün 9 yıllık deneyimimizle;
+              bahçesinde neşe kaynayan, atölyelerinde renkler dans eden,
+              kütüphanesinde hayaller filizlenen üç şubeli bir aile olduk.
             </p>
             <p className="mt-4 text-muted-foreground leading-relaxed">
               İnancımız çok basit: <strong className="text-foreground">her çocuk özeldir</strong>
