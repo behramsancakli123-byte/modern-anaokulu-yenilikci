@@ -73,17 +73,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "3–6 yaş arası çocuklar için modern, yaratıcı ve güvenli bir anaokulu deneyimi. Özel Bihter Anaokulları'nda her çocuk keşfeder, büyür ve parlar.",
+          "2–6 yaş arası çocuklar için modern, yaratıcı ve güvenli bir anaokulu deneyimi. Özel Bihter Anaokulları'nda her çocuk keşfeder, büyür ve parlar.",
       },
       { name: "author", content: "Özel Bihter Anaokulları" },
       { property: "og:title", content: "Özel Bihter Anaokulları — Modern & Sevgi Dolu Erken Çocukluk Eğitimi" },
-      { property: "og:description", content: "3–6 yaş arası çocuklar için modern, yaratıcı ve güvenli bir anaokulu deneyimi. Özel Bihter Anaokulları'nda her çocuk keşfeder, büyür ve parlar." },
+      { property: "og:description", content: "2–6 yaş arası çocuklar için modern, yaratıcı ve güvenli bir anaokulu deneyimi. Özel Bihter Anaokulları'nda her çocuk keşfeder, büyür ve parlar." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Özel Bihter Anaokulları — Modern & Sevgi Dolu Erken Çocukluk Eğitimi" },
-      { name: "twitter:description", content: "3–6 yaş arası çocuklar için modern, yaratıcı ve güvenli bir anaokulu deneyimi. Özel Bihter Anaokulları'nda her çocuk keşfeder, büyür ve parlar." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d19ff9c9-afaf-45d1-b16b-ddc692ca81aa/id-preview-529fb9fd--17306162-bf22-4d19-b4ae-455cb309ed2e.lovable.app-1784417450043.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d19ff9c9-afaf-45d1-b16b-ddc692ca81aa/id-preview-529fb9fd--17306162-bf22-4d19-b4ae-455cb309ed2e.lovable.app-1784417450043.png" },
+      { name: "twitter:description", content: "2–6 yaş arası çocuklar için modern, yaratıcı ve güvenli bir anaokulu deneyimi. Özel Bihter Anaokulları'nda her çocuk keşfeder, büyür ve parlar." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -92,7 +90,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap",
       },
     ],
   }),

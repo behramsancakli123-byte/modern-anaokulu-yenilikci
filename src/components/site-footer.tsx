@@ -1,12 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Facebook, Phone, Mail, MapPin } from "lucide-react";
+import { Instagram, Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/assets/bihter-logo.png.asset.json";
-
-const branches = [
-  { name: "Yıldırım Şubesi", address: "Yıldırım Mah. Şehir Parkı Cd. No:17, Bayrampaşa/İstanbul" },
-  { name: "Kocatepe Şubesi", address: "Kocatepe Mah. 32. Sk. No:16/A, Bayrampaşa/İstanbul" },
-  { name: "Eyüp Şubesi", address: "Karadolap Mah. Neşeli Sk. No:9/A, Eyüpsultan/İstanbul" },
-];
+import { branches, CONTACT_EMAIL } from "@/lib/branches";
 
 export function SiteFooter() {
   return (
@@ -23,24 +18,29 @@ export function SiteFooter() {
               </div>
             </div>
             <p className="mt-5 max-w-md text-sm text-muted-foreground leading-relaxed">
-              3–6 yaş arası çocuklara güvenli, sevgi dolu ve yaratıcı bir öğrenme
+              2–6 yaş arası çocuklara güvenli, sevgi dolu ve yaratıcı bir öğrenme
               ortamı sunan, modern eğitim anlayışıyla hizmet veren anaokulumuz.
             </p>
-            <div className="mt-6 flex gap-3">
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="grid h-11 w-11 place-items-center rounded-2xl border border-border hover:bg-primary hover:text-primary-foreground hover:-translate-y-1 transition-all"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                aria-label="Facebook"
-                className="grid h-11 w-11 place-items-center rounded-2xl border border-border hover:bg-primary hover:text-primary-foreground hover:-translate-y-1 transition-all"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
+
+            <div className="mt-6">
+              <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
+                Instagram
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {branches.map((b) => (
+                  <a
+                    key={b.key}
+                    href={b.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${b.name} Instagram`}
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 text-xs font-semibold hover:bg-primary hover:text-primary-foreground hover:-translate-y-0.5 transition-all"
+                  >
+                    <Instagram className="h-4 w-4" />
+                    {b.key === "yildirim" ? "Yıldırım" : b.key === "kocatepe" ? "Kocatepe" : "Eyüp"}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -59,18 +59,27 @@ export function SiteFooter() {
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-muted-foreground">
               Şubelerimiz
             </h4>
-            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+            <ul className="mt-4 space-y-4 text-sm text-muted-foreground">
               {branches.map((b) => (
-                <li key={b.name} className="flex gap-2">
-                  <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
-                  <div>
-                    <div className="font-semibold text-foreground">{b.name}</div>
-                    <div className="text-xs leading-relaxed">{b.address}</div>
+                <li key={b.key} className="space-y-1">
+                  <div className="flex gap-2">
+                    <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
+                    <div>
+                      <div className="font-semibold text-foreground">{b.name}</div>
+                      <div className="text-xs leading-relaxed">{b.address}</div>
+                      <a href={b.phoneHref} className="text-xs font-semibold text-primary hover:underline">
+                        {b.phone}
+                      </a>
+                    </div>
                   </div>
                 </li>
               ))}
-              <li className="flex gap-2 pt-2"><Phone className="h-4 w-4 mt-0.5 shrink-0 text-primary" /> +90 (212) 000 00 00</li>
-              <li className="flex gap-2"><Mail className="h-4 w-4 mt-0.5 shrink-0 text-primary" /> merhaba@bihteranaokulu.com</li>
+              <li className="flex gap-2 pt-2">
+                <Mail className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
+                <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-primary transition-colors break-all">
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
             </ul>
           </div>
         </div>

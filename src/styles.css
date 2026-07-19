@@ -40,7 +40,7 @@
   --color-blossom: var(--blossom);
   --color-blossom-foreground: var(--blossom-foreground);
 
-  --font-display: "Fredoka", ui-rounded, system-ui, sans-serif;
+  --font-display: "DynaPuff", "Fredoka", ui-rounded, system-ui, sans-serif;
   --font-body: "Nunito", ui-sans-serif, system-ui, sans-serif;
 
   --animate-float: float 6s ease-in-out infinite;

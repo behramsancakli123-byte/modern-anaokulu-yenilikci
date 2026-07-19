@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle2, Instagram, Facebook } from "lucide-react";
+import { Mail, MapPin, Clock, Send, CheckCircle2, Instagram, Phone } from "lucide-react";
+import { branches, CONTACT_EMAIL } from "@/lib/branches";
 
 export const Route = createFileRoute("/iletisim")({
   head: () => ({
@@ -9,40 +10,18 @@ export const Route = createFileRoute("/iletisim")({
       {
         name: "description",
         content:
-          "Özel Bihter Anaokulları'na ön kayıt formunu doldurun, sizi arayalım. Telefon, adres ve çalışma saatleri.",
+          "Özel Bihter Anaokulları'na ön kayıt formunu doldurun, sizi arayalım. Şube adresleri, telefonlar ve çalışma saatleri.",
       },
       { property: "og:title", content: "Kayıt & İletişim — Özel Bihter Anaokulları" },
-      { property: "og:description", content: "Ön kayıt formu, iletişim bilgileri ve konum." },
+      { property: "og:description", content: "Ön kayıt formu, iletişim bilgileri ve şubelerimiz." },
     ],
   }),
   component: ContactPage,
 });
 
 const info = [
-  { icon: Phone, label: "Telefon", value: "+90 (212) 000 00 00", href: "tel:+902120000000" },
-  { icon: Mail, label: "E-posta", value: "merhaba@bihteranaokulu.com", href: "mailto:merhaba@bihteranaokulu.com" },
+  { icon: Mail, label: "E-posta", value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
   { icon: Clock, label: "Saatler", value: "Pzt - Cum · 07:30 – 18:30" },
-];
-
-const branches = [
-  {
-    name: "Yıldırım Şubesi",
-    address: "Yıldırım Mahallesi, Şehir Parkı Caddesi, No:17 Bayrampaşa/İstanbul",
-    district: "Bayrampaşa",
-    mapQuery: "Yıldırım Mahallesi Şehir Parkı Caddesi 17 Bayrampaşa İstanbul",
-  },
-  {
-    name: "Kocatepe Şubesi",
-    address: "Kocatepe Mahallesi, 32. Sokak, No:16/A Bayrampaşa/İstanbul",
-    district: "Bayrampaşa",
-    mapQuery: "Kocatepe Mahallesi 32. Sokak 16 Bayrampaşa İstanbul",
-  },
-  {
-    name: "Eyüp Şubesi",
-    address: "Karadolap Mahallesi, Neşeli Sokak, No:9/A Eyüpsultan/İstanbul",
-    district: "Eyüpsultan",
-    mapQuery: "Karadolap Mahallesi Neşeli Sokak 9 Eyüpsultan İstanbul",
-  },
 ];
 
 function ContactPage() {
@@ -50,8 +29,29 @@ function ContactPage() {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const parent = String(data.get("parent") ?? "").trim();
+    const phone = String(data.get("phone") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const age = String(data.get("age") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
+
+    const subject = `Ön Kayıt Talebi — ${parent || "Yeni Başvuru"}`;
+    const bodyLines = [
+      `Veli Adı Soyadı: ${parent}`,
+      `Telefon: ${phone}`,
+      `E-posta: ${email}`,
+      `Çocuğun Yaşı: ${age}`,
+      "",
+      "Mesaj:",
+      message,
+    ];
+    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+    window.location.href = mailto;
+
     setSent(true);
-    (e.currentTarget as HTMLFormElement).reset();
+    form.reset();
     setTimeout(() => setSent(false), 5000);
   };
 
@@ -82,7 +82,8 @@ function ContactPage() {
           <div className="lg:col-span-3 rounded-[2rem] border border-border bg-card p-6 sm:p-10 shadow-playful animate-fade-up">
             <h2 className="font-display text-3xl font-bold">Ön Kayıt Formu</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Bilgileriniz güvende. Sadece sizinle iletişime geçmek için kullanılır.
+              Gönder butonuna bastığınızda e-posta uygulamanız açılır ve talebiniz
+              {" "}<strong className="text-foreground">{CONTACT_EMAIL}</strong> adresine iletilir.
             </p>
 
             <form onSubmit={onSubmit} className="mt-8 grid gap-5 sm:grid-cols-2">
@@ -146,15 +147,27 @@ function ContactPage() {
 
             <div className="rounded-3xl border border-border bg-card p-6 animate-fade-up">
               <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                Sosyal Medya
+                Instagram Hesaplarımız
               </div>
-              <div className="mt-3 flex gap-3">
-                <a href="#" aria-label="Instagram" className="grid h-12 w-12 place-items-center rounded-2xl border border-border hover:bg-primary hover:text-primary-foreground hover:-translate-y-1 transition-all">
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a href="#" aria-label="Facebook" className="grid h-12 w-12 place-items-center rounded-2xl border border-border hover:bg-primary hover:text-primary-foreground hover:-translate-y-1 transition-all">
-                  <Facebook className="h-5 w-5" />
-                </a>
+              <div className="mt-3 flex flex-col gap-2">
+                {branches.map((b) => (
+                  <a
+                    key={b.key}
+                    href={b.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between gap-3 rounded-2xl border border-border px-4 py-3 hover:bg-primary hover:text-primary-foreground hover:-translate-y-0.5 transition-all"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Instagram className="h-5 w-5" />
+                      <div>
+                        <div className="text-sm font-bold">{b.name}</div>
+                        <div className="text-[11px] opacity-80">{b.instagramHandle}</div>
+                      </div>
+                    </div>
+                    <span className="text-xs opacity-70 group-hover:opacity-100">→</span>
+                  </a>
+                ))}
               </div>
             </div>
           </div>
@@ -177,7 +190,7 @@ function ContactPage() {
           <div className="grid gap-6 lg:grid-cols-3">
             {branches.map((b, i) => (
               <div
-                key={b.name}
+                key={b.key}
                 style={{ animationDelay: `${i * 100}ms` }}
                 className="animate-fade-up group rounded-[2rem] border border-border bg-card overflow-hidden hover:-translate-y-2 hover:shadow-playful transition-all"
               >
@@ -199,6 +212,23 @@ function ContactPage() {
                   <div className="mt-3 flex gap-2 text-sm text-muted-foreground">
                     <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
                     <span>{b.address}</span>
+                  </div>
+                  <div className="mt-2 flex gap-2 text-sm">
+                    <Phone className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
+                    <a href={b.phoneHref} className="font-semibold hover:text-primary transition-colors">
+                      {b.phone}
+                    </a>
+                  </div>
+                  <div className="mt-2 flex gap-2 text-sm">
+                    <Instagram className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
+                    <a
+                      href={b.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold hover:text-primary transition-colors"
+                    >
+                      {b.instagramHandle}
+                    </a>
                   </div>
                   <a
                     href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.mapQuery)}`}

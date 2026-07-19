@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Heart, Palette, BookOpen, Music, Users, Shield, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Heart, Palette, BookOpen, Music, Users, Shield, Sparkles, Star, UserRound } from "lucide-react";
 import heroImg from "@/assets/hero-kids.jpg";
 import artImg from "@/assets/activity-art.jpg";
 import readImg from "@/assets/activity-read.jpg";
 import playImg from "@/assets/activity-play.jpg";
 import mascot from "@/assets/mascot.png";
+import { branches } from "@/lib/branches";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -20,11 +21,17 @@ const features = [
 ];
 
 const stats = [
-  { value: "12+", label: "Yıllık deneyim" },
+  { value: "9+", label: "Yıllık deneyim" },
   { value: "480", label: "Mutlu mezun" },
   { value: "22", label: "Uzman eğitmen" },
   { value: "4.9★", label: "Veli memnuniyeti" },
 ];
+
+const directors = branches.map((b) => ({
+  branch: b.name,
+  district: b.district,
+  name: "—",
+}));
 
 function HomePage() {
   return (
@@ -43,7 +50,7 @@ function HomePage() {
                 <span className="grid h-5 w-5 place-items-center rounded-full gradient-hero">
                   <Star className="h-3 w-3 text-white" strokeWidth={3} />
                 </span>
-                2025-2026 Ön Kayıtlar Açık
+                2026-2027 Ön Kayıtlar Açık
               </div>
 
               <h1 className="mt-6 font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[0.95]">
@@ -53,7 +60,7 @@ function HomePage() {
               </h1>
 
               <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
-                Özel Bihter Anaokulları'nda 3–6 yaş çocukları güvenli, sevgi dolu ve
+                Özel Bihter Anaokulları'nda 2–6 yaş çocukları güvenli, sevgi dolu ve
                 yaratıcı bir dünyada keşfediyor, öğreniyor ve büyüyor.
               </p>
 
@@ -121,7 +128,7 @@ function HomePage() {
                     </div>
                     <div>
                       <div className="text-xs font-bold">Sevgi ile büyüt</div>
-                      <div className="text-[10px] text-muted-foreground">3–6 yaş</div>
+                      <div className="text-[10px] text-muted-foreground">2–6 yaş</div>
                     </div>
                   </div>
                 </div>
@@ -250,6 +257,47 @@ function HomePage() {
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* KURUM MÜDÜRLERİMİZ */}
+      <section className="mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-28">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="inline-block rounded-full bg-primary/10 text-primary px-4 py-1.5 text-xs font-bold uppercase tracking-wider">
+            Ekibimiz
+          </div>
+          <h2 className="mt-4 font-display font-bold text-4xl sm:text-5xl">
+            Kurum <span className="gradient-text">Müdürlerimiz</span>
+          </h2>
+          <p className="mt-3 text-muted-foreground">
+            Üç şubemizde çocuklarımıza ve velilerimize sıcak bir yuva sunan yöneticilerimiz.
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {directors.map((d, i) => (
+            <div
+              key={d.branch}
+              style={{ animationDelay: `${i * 100}ms` }}
+              className="animate-fade-up group rounded-[2rem] border border-border bg-card p-5 hover:-translate-y-2 hover:shadow-playful transition-all"
+            >
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.5rem] gradient-hero">
+                <div aria-hidden className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_30%_20%,white,transparent_55%)]" />
+                <div className="absolute inset-0 grid place-items-center">
+                  <div className="grid h-24 w-24 place-items-center rounded-full bg-white/25 backdrop-blur ring-4 ring-white/30 group-hover:scale-110 transition-transform">
+                    <UserRound className="h-12 w-12 text-white" strokeWidth={2.2} />
+                  </div>
+                </div>
+                <div className="absolute top-3 left-3 rounded-full bg-white/90 backdrop-blur px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
+                  {d.district}
+                </div>
+              </div>
+              <div className="mt-5 text-center">
+                <div className="font-display text-xl font-bold">{d.name}</div>
+                <div className="mt-1 text-sm text-muted-foreground">{d.branch} Müdürü</div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </div>
