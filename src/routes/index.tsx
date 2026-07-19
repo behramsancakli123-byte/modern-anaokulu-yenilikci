@@ -50,7 +50,7 @@ function HomePage() {
                 <span className="grid h-5 w-5 place-items-center rounded-full gradient-hero">
                   <Star className="h-3 w-3 text-white" strokeWidth={3} />
                 </span>
-                2025-2026 Ön Kayıtlar Açık
+                2026-2027 Ön Kayıtlar Açık
               </div>
 
               <h1 className="mt-6 font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[0.95]">
@@ -60,7 +60,7 @@ function HomePage() {
               </h1>
 
               <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
-                Özel Bihter Anaokulları'nda 3–6 yaş çocukları güvenli, sevgi dolu ve
+                Özel Bihter Anaokulları'nda 2–6 yaş çocukları güvenli, sevgi dolu ve
                 yaratıcı bir dünyada keşfediyor, öğreniyor ve büyüyor.
               </p>
 
@@ -128,7 +128,7 @@ function HomePage() {
                     </div>
                     <div>
                       <div className="text-xs font-bold">Sevgi ile büyüt</div>
-                      <div className="text-[10px] text-muted-foreground">3–6 yaş</div>
+                      <div className="text-[10px] text-muted-foreground">2–6 yaş</div>
                     </div>
                   </div>
                 </div>
